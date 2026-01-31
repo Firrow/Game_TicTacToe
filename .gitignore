@@ -103,3 +103,5 @@ InitTestScene*.unity*
 */Temp
 */UserSettings
 */ProjectSettings
+*/obj/Debug
+*/Debug
