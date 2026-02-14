@@ -26,6 +26,9 @@ public class GameManager : NetworkBehaviour
         public PlayerType winPlayerType;
     };
     public event EventHandler OnCurrentPlayablePlayerTypeChanged;
+    public event EventHandler OnRematch;
+    public event EventHandler OnGameTie;
+
 
 
     public enum PlayerType
@@ -225,8 +228,27 @@ public class GameManager : NetworkBehaviour
                 // WIN !!
                 currentPlayablePlayerType.Value = PlayerType.None;
                 TriggerOnGameWinRpc(i, playerTypeArray[line.centerGridPosition.x, line.centerGridPosition.y]);
-                break;
+                return;
             }
+        }
+
+
+        bool hasTie = true;
+        for (int i = 0; i < playerTypeArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < playerTypeArray.GetLength(1); j++)
+            {
+                if (playerTypeArray[i, j] == PlayerType.None)
+                {
+                    hasTie = false;
+                    break;
+                }
+            }
+        }
+
+        if (hasTie)
+        {
+            TriggerOnGameTiedRpc();
         }
     }
 
@@ -240,6 +262,37 @@ public class GameManager : NetworkBehaviour
             winPlayerType = winPlayerType
         });
     }
+
+    [Rpc(SendTo.Server)]
+    public void RematchRpc()
+    {
+        // clear the grid
+        for (int i = 0; i < playerTypeArray.GetLength(0); i++) 
+        {
+            for (int j = 0; j < playerTypeArray.GetLength(1); j++)
+            {
+                playerTypeArray[i, j] = PlayerType.None;
+            }
+        }
+
+        currentPlayablePlayerType.Value = PlayerType.Circle;
+
+        TriggerOnRematchRpc();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TriggerOnRematchRpc()
+    {
+        OnRematch?.Invoke(this, EventArgs.Empty);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TriggerOnGameTiedRpc()
+    {
+        OnGameTie?.Invoke(this, EventArgs.Empty);
+    }
+
+
 
     public PlayerType GetLocalPlayerType()
     {
