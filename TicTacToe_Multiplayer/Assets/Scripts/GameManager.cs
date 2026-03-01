@@ -130,6 +130,13 @@ public class GameManager : NetworkBehaviour
         };
     }
 
+
+    /*private void Update()
+    {
+        Debug.Log("HOST ? :" + NetworkManager.IsHost);
+    }*/
+
+
     // SERVER FUNCTION : Check if there is two players connected to start game
     private void NetworkManager_OnClientConnectedCallback(ulong obj)
     {

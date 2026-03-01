@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyUI : MonoBehaviour {
@@ -22,6 +23,7 @@ public class LobbyUI : MonoBehaviour {
     [SerializeField] private Button changeZombieButton;
     [SerializeField] private Button leaveLobbyButton;
     [SerializeField] private Button changeGameModeButton;
+    [SerializeField] private Button startGameButton;
 
 
     private void Awake() {
@@ -46,6 +48,10 @@ public class LobbyUI : MonoBehaviour {
         changeGameModeButton.onClick.AddListener(() => {
             LobbyManager.Instance.ChangeGameMode();
         });
+
+        startGameButton.onClick.AddListener(() => {
+            LobbyManager.Instance.StartGame();
+        });
     }
 
     private void Start() {
@@ -54,6 +60,7 @@ public class LobbyUI : MonoBehaviour {
         LobbyManager.Instance.OnLobbyGameModeChanged += UpdateLobby_Event;
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
+        LobbyManager.Instance.OnGameStarted += LobbyManager_OnGameStarted;
 
         Hide();
     }
@@ -61,6 +68,21 @@ public class LobbyUI : MonoBehaviour {
     private void LobbyManager_OnLeftLobby(object sender, System.EventArgs e) {
         ClearLobby();
         Hide();
+    }
+
+    private void LobbyManager_OnGameStarted(object sender, System.EventArgs e)
+    {
+        ClearLobby();
+        Hide();
+        LobbyManager.Instance.OnJoinedLobby -= UpdateLobby_Event;
+        LobbyManager.Instance.OnJoinedLobbyUpdate -= UpdateLobby_Event;
+        LobbyManager.Instance.OnLobbyGameModeChanged -= UpdateLobby_Event;
+        LobbyManager.Instance.OnLeftLobby -= LobbyManager_OnLeftLobby;
+        LobbyManager.Instance.OnKickedFromLobby -= LobbyManager_OnLeftLobby;
+        LobbyManager.Instance.OnGameStarted -= LobbyManager_OnGameStarted;
+        SceneManager.LoadScene("GameScene");
+
+        // ???
     }
 
     private void UpdateLobby_Event(object sender, LobbyManager.LobbyEventArgs e) {
