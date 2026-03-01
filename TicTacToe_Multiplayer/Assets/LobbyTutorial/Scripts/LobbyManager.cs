@@ -7,6 +7,7 @@ using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour {
 
@@ -377,6 +378,7 @@ public class LobbyManager : MonoBehaviour {
             try
             {
                 Debug.Log("StartGame");
+                SceneManager.LoadScene("GameScene");
 
                 string relayCode = await TestRelay.Instance.CreateRelay();
 

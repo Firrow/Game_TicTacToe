@@ -80,7 +80,7 @@ public class LobbyUI : MonoBehaviour {
         LobbyManager.Instance.OnLeftLobby -= LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby -= LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnGameStarted -= LobbyManager_OnGameStarted;
-        SceneManager.LoadScene("GameScene");
+        //SceneManager.LoadScene("GameScene");
 
         // ???
     }
