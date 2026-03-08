@@ -28,7 +28,7 @@ public class LobbyManager : MonoBehaviour {
     public event EventHandler<LobbyEventArgs> OnJoinedLobby;
     public event EventHandler<LobbyEventArgs> OnJoinedLobbyUpdate;
     public event EventHandler<LobbyEventArgs> OnKickedFromLobby;
-    public event EventHandler<LobbyEventArgs> OnLobbyGameModeChanged;
+    //public event EventHandler<LobbyEventArgs> OnLobbyGameModeChanged;
     public class LobbyEventArgs : EventArgs {
         public Lobby lobby;
     }
@@ -174,7 +174,7 @@ public class LobbyManager : MonoBehaviour {
         });
     }
 
-    public void ChangeGameMode() {
+    /*public void ChangeGameMode() {
         if (IsLobbyHost()) {
             GameMode gameMode =
                 Enum.Parse<GameMode>(joinedLobby.Data[KEY_GAME_MODE].Value);
@@ -191,7 +191,7 @@ public class LobbyManager : MonoBehaviour {
 
             UpdateLobbyGameMode(gameMode);
         }
-    }
+    }*/
 
     public async void CreateLobby(string lobbyName, int maxPlayers, bool isPrivate, GameMode gameMode) {
         Player player = GetPlayer();
@@ -353,7 +353,7 @@ public class LobbyManager : MonoBehaviour {
         }
     }
 
-    public async void UpdateLobbyGameMode(GameMode gameMode) {
+    /*public async void UpdateLobbyGameMode(GameMode gameMode) {
         try {
             Debug.Log("UpdateLobbyGameMode " + gameMode);
             
@@ -369,7 +369,7 @@ public class LobbyManager : MonoBehaviour {
         } catch (LobbyServiceException e) {
             Debug.Log(e);
         }
-    }
+    }*/
 
     public async void StartGame()
     {
