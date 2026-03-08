@@ -13,12 +13,12 @@ public class LobbyCreateUI : MonoBehaviour {
     [SerializeField] private Button createButton;
     [SerializeField] private Button lobbyNameButton;
     [SerializeField] private Button publicPrivateButton;
-    [SerializeField] private Button maxPlayersButton;
-    [SerializeField] private Button gameModeButton;
+    //[SerializeField] private Button maxPlayersButton;
+    //[SerializeField] private Button gameModeButton;
     [SerializeField] private TextMeshProUGUI lobbyNameText;
     [SerializeField] private TextMeshProUGUI publicPrivateText;
-    [SerializeField] private TextMeshProUGUI maxPlayersText;
-    [SerializeField] private TextMeshProUGUI gameModeText;
+    //[SerializeField] private TextMeshProUGUI maxPlayersText;
+    //[SerializeField] private TextMeshProUGUI gameModeText;
 
 
     private string lobbyName;
@@ -40,7 +40,7 @@ public class LobbyCreateUI : MonoBehaviour {
         });
 
         lobbyNameButton.onClick.AddListener(() => {
-            UI_InputWindow.Show_Static("Lobby Name", lobbyName, "abcdefghijklmnopqrstuvxywzABCDEFGHIJKLMNOPQRSTUVXYWZ .,-", 20,
+            UI_InputWindow.Show_Static("Lobby Name", lobbyName, "abcdefghijklmnopqrstuvxywzABCDEFGHIJKLMNOPQRSTUVXYWZ .,-,_", 20,
             () => {
                 // Cancel
             },
@@ -55,7 +55,7 @@ public class LobbyCreateUI : MonoBehaviour {
             UpdateText();
         });
 
-        maxPlayersButton.onClick.AddListener(() => {
+        /*maxPlayersButton.onClick.AddListener(() => {
             UI_InputWindow.Show_Static("Max Players", maxPlayers,
             () => {
                 // Cancel
@@ -64,9 +64,9 @@ public class LobbyCreateUI : MonoBehaviour {
                 this.maxPlayers = maxPlayers;
                 UpdateText();
             });
-        });
+        });*/
 
-        gameModeButton.onClick.AddListener(() => {
+        /*gameModeButton.onClick.AddListener(() => {
             switch (gameMode) {
                 default:
                 case LobbyManager.GameMode.CaptureTheFlag:
@@ -77,7 +77,7 @@ public class LobbyCreateUI : MonoBehaviour {
                     break;
             }
             UpdateText();
-        });
+        });*/
 
         Hide();
     }
@@ -85,8 +85,8 @@ public class LobbyCreateUI : MonoBehaviour {
     private void UpdateText() {
         lobbyNameText.text = lobbyName;
         publicPrivateText.text = isPrivate ? "Private" : "Public";
-        maxPlayersText.text = maxPlayers.ToString();
-        gameModeText.text = gameMode.ToString();
+        //maxPlayersText.text = maxPlayers.ToString();
+        //gameModeText.text = gameMode.ToString();
     }
 
     private void Hide() {
@@ -98,8 +98,8 @@ public class LobbyCreateUI : MonoBehaviour {
 
         lobbyName = "MyLobby";
         isPrivate = false;
-        maxPlayers = 4;
-        gameMode = LobbyManager.GameMode.CaptureTheFlag;
+        maxPlayers = 2;
+        //gameMode = LobbyManager.GameMode.CaptureTheFlag;
 
         UpdateText();
     }
