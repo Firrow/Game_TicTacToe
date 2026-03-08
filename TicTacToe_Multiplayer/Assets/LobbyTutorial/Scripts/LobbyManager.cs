@@ -13,6 +13,7 @@ public class LobbyManager : MonoBehaviour {
 
 
     public static LobbyManager Instance { get; private set; }
+    public Transform connectingUI;
 
 
     public const string KEY_PLAYER_NAME = "PlayerName";
@@ -39,10 +40,10 @@ public class LobbyManager : MonoBehaviour {
     }
 
 
-    public enum GameMode {
+    /*public enum GameMode {
         CaptureTheFlag,
         Conquest
-    }
+    }*/
 
     public enum PlayerCharacter {
         Marine,
@@ -193,14 +194,14 @@ public class LobbyManager : MonoBehaviour {
         }
     }*/
 
-    public async void CreateLobby(string lobbyName, int maxPlayers, bool isPrivate, GameMode gameMode) {
+    public async void CreateLobby(string lobbyName, int maxPlayers, bool isPrivate/*, GameMode gameMode*/) {
         Player player = GetPlayer();
 
         CreateLobbyOptions options = new CreateLobbyOptions {
             Player = player,
             IsPrivate = isPrivate,
             Data = new Dictionary<string, DataObject> {
-                { KEY_GAME_MODE, new DataObject(DataObject.VisibilityOptions.Public, gameMode.ToString()) },
+                //{ KEY_GAME_MODE, new DataObject(DataObject.VisibilityOptions.Public, gameMode.ToString()) },
                 { KEY_START_GAME, new DataObject(DataObject.VisibilityOptions.Member, "0") }
             }
         };

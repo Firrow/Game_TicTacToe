@@ -72,6 +72,7 @@ public class LobbyUI : MonoBehaviour {
 
     private void LobbyManager_OnGameStarted(object sender, System.EventArgs e)
     {
+        LobbyManager.Instance.connectingUI.gameObject.SetActive(true);
         ClearLobby();
         Hide();
         LobbyManager.Instance.OnJoinedLobby -= UpdateLobby_Event;
@@ -80,9 +81,6 @@ public class LobbyUI : MonoBehaviour {
         LobbyManager.Instance.OnLeftLobby -= LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby -= LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnGameStarted -= LobbyManager_OnGameStarted;
-        //SceneManager.LoadScene("GameScene");
-
-        // ???
     }
 
     private void UpdateLobby_Event(object sender, LobbyManager.LobbyEventArgs e) {
