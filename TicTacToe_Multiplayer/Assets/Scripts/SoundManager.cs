@@ -3,9 +3,9 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     // On gère le son localement afin d'éviter d'utiliser de la bande passante pour rien
-    [SerializeField] private Transform placeSFXPrefab;
-    [SerializeField] private Transform winSFXPrefab;
-    [SerializeField] private Transform loseSFXPrefab;
+    [SerializeField] private AudioClip placeSFXPrefab;
+    [SerializeField] private AudioClip winSFXPrefab;
+    [SerializeField] private AudioClip loseSFXPrefab;
 
 
 
@@ -17,21 +17,18 @@ public class SoundManager : MonoBehaviour
 
     private void GameManager_OnPlacedObject(object sender, System.EventArgs e)
     {
-        Transform SFXTransform = Instantiate(placeSFXPrefab);
-        Destroy(SFXTransform.gameObject, 5.0f); //Destroy sound after 5 secondes
+        AudioSource.PlayClipAtPoint(placeSFXPrefab, new Vector3(0, 0, 0));
     }
 
     private void GameManager_OnGameWin(object sender, GameManager.OnGameWinEventArgs e)
     {
         if (GameManager.Instance.GetLocalPlayerType() == e.winPlayerType)
         {
-            Transform SFXTransform = Instantiate(winSFXPrefab);
-            Destroy(winSFXPrefab.gameObject, 5.0f); //Destroy sound after 5 secondes
+            AudioSource.PlayClipAtPoint(winSFXPrefab, new Vector3(0, 0, 0));
         }
         else
         {
-            Transform SFXTransform = Instantiate(loseSFXPrefab);
-            Destroy(loseSFXPrefab.gameObject, 5.0f); //Destroy sound after 5 secondes
+            AudioSource.PlayClipAtPoint(loseSFXPrefab, new Vector3(0, 0, 0));
         }
     }
 }

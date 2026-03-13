@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b56019b5e7a6f04f893789c5e79a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  placeSFXPrefab: {fileID: 421245276902457359, guid: 2849f0ffe6655bc47af0ec737dd47b3b, type: 3}
-  winSFXPrefab: {fileID: 421245276902457359, guid: c04e3fd2f3228e948a1180869bb18359, type: 3}
-  loseSFXPrefab: {fileID: 421245276902457359, guid: 9551126056846e04d9f95caf10c9aaea, type: 3}
+  placeSFXPrefab: {fileID: 8300000, guid: 3cbd76f6d40e48c48aa47564cd88186b, type: 3}
+  winSFXPrefab: {fileID: 8300000, guid: 6807edc9109b3114e8e1b0f44d202684, type: 3}
+  loseSFXPrefab: {fileID: 8300000, guid: 3d3c5e574f24f2148b3c6776f4f05d1e, type: 3}
 --- !u!4 &33968634
 Transform:
   m_ObjectHideFlags: 0

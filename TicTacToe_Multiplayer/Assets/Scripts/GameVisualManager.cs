@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameVisualManager : NetworkBehaviour
@@ -40,6 +41,10 @@ public class GameVisualManager : NetworkBehaviour
         }
 
         float eulerZ = 0.0f;
+        if (e.line.IsUnityNull())
+        {
+            Debug.Log("LINE IS NULL !!!");
+        }
         switch (e.line.orientation)
         {
             case GameManager.Orientation.Horizontal:
