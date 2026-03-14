@@ -25,7 +25,7 @@ public class TestRelay : MonoBehaviour
 
         AuthenticationService.Instance.SignedIn += () =>
         {
-            Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
+            //Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
         };
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
@@ -37,7 +37,7 @@ public class TestRelay : MonoBehaviour
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(1);
             string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-            Debug.Log(joinCode);
+            //Debug.Log(joinCode);
 
             RelayServerData relayServerData = AllocationUtils.ToRelayServerData(allocation, "dtls");
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
@@ -57,7 +57,7 @@ public class TestRelay : MonoBehaviour
     {
         try
         {
-            Debug.Log("Joining Relay with code " + joinCode);
+            //Debug.Log("Joining Relay with code " + joinCode);
             JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
             RelayServerData relayServerData = AllocationUtils.ToRelayServerData(joinAllocation, "dtls");

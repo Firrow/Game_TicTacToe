@@ -79,7 +79,7 @@ public class LobbyManager : MonoBehaviour {
 
         AuthenticationService.Instance.SignedIn += () => {
             // do nothing
-            Debug.Log("Signed in! " + AuthenticationService.Instance.PlayerId);
+            //Debug.Log("Signed in! " + AuthenticationService.Instance.PlayerId);
 
             RefreshLobbyList();
         };
@@ -106,7 +106,7 @@ public class LobbyManager : MonoBehaviour {
                 float heartbeatTimerMax = 15f;
                 heartbeatTimer = heartbeatTimerMax;
 
-                Debug.Log("Heartbeat");
+                //Debug.Log("Heartbeat");
                 await LobbyService.Instance.SendHeartbeatPingAsync(joinedLobby.Id);
             }
         }
@@ -125,7 +125,7 @@ public class LobbyManager : MonoBehaviour {
 
                 if (!IsPlayerInLobby()) {
                     // Player was kicked out of this lobby
-                    Debug.Log("Kicked from Lobby!");
+                    //Debug.Log("Kicked from Lobby!");
 
                     OnKickedFromLobby?.Invoke(this, new LobbyEventArgs { lobby = joinedLobby });
 
@@ -212,7 +212,7 @@ public class LobbyManager : MonoBehaviour {
 
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
 
-        Debug.Log("Created Lobby " + lobby.Name);
+        //Debug.Log("Created Lobby " + lobby.Name);
     }
 
     public async void RefreshLobbyList() {
@@ -378,7 +378,7 @@ public class LobbyManager : MonoBehaviour {
         {
             try
             {
-                Debug.Log("StartGame");
+                //Debug.Log("StartGame");
                 SceneManager.LoadScene("GameScene");
 
                 string relayCode = await TestRelay.Instance.CreateRelay();

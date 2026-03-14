@@ -200,7 +200,7 @@ public class GameManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        Debug.Log("Client ID : " + NetworkManager.Singleton.LocalClientId);
+        //Debug.Log("Client ID : " + NetworkManager.Singleton.LocalClientId);
         if (NetworkManager.Singleton.LocalClientId == 0)
         {
             localPlayerType = PlayerType.Circle;

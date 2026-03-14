@@ -29,7 +29,7 @@ public class GameVisualManager : NetworkBehaviour
 
     private void GameManager_OnClickedOnGridPosition(object sender, GameManager.OnClickedOnGridPositionEventArgs e)
     {
-        Debug.Log("GameManager_OnClickedOnGridPosition");
+        //Debug.Log("GameManager_OnClickedOnGridPosition");
         SpawnObjectRpc(e.x, e.y, e.playerType);
     }
 
@@ -91,7 +91,7 @@ public class GameVisualManager : NetworkBehaviour
     [Rpc(SendTo.Server)] // cette fonction sera appelée par le serveur lorsque le client va appeler GameManager_OnClickedOnGridPosition 
     private void SpawnObjectRpc(int x, int y, GameManager.PlayerType playerType)
     {
-        Debug.Log("SpawnObject");
+        //Debug.Log("SpawnObject");
         Transform prefab = null;
         switch (playerType)
         {
